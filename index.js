@@ -5,11 +5,15 @@ import productRouter from './routes/productRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import jwt from 'jsonwebtoken';
 import orderRouter from './routes/orderRoutes.js';
-
-
+import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
+
+app.use(cors()) 
 app.use(bodyParser.json());
+
 
 app.use(
     (req,res,next) => {
@@ -41,7 +45,7 @@ app.use(
     
 )
 
-mongoose.connect("mongodb+srv://SahiruSandeepa:8319@cluster0.kkkwtbq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(
+mongoose.connect(process.env.MONGODB_URL).then(
 
     () => {
         console.log("Connected to the Database");
@@ -51,9 +55,9 @@ mongoose.connect("mongodb+srv://SahiruSandeepa:8319@cluster0.kkkwtbq.mongodb.net
         })
 
 
-app.use("/products", productRouter);
-app.use("/users", userRouter);
-app.use("/orders", orderRouter);
+app.use("/api/products", productRouter);
+app.use("/api/users", userRouter);
+app.use("/api/orders", orderRouter);
 
 
 
