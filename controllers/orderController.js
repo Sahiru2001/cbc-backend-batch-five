@@ -38,7 +38,7 @@ export async function createOrder(req, res) {
 
 try{
     let total = 0;
-    let labelledTotal = 0;
+    let labledTotal = 0;
     const products = []
 
     for(let i = 0; i < orderInfo.products.length; i++) {
@@ -65,14 +65,14 @@ try{
                 altNames : item.altNames,
                 description : item.description,
                 images : item.images,
-                lablledPrice : item.labledPrice,
+                labledPrice : item.labledPrice,
                 price : item.price,
             
         },
         quantity : orderInfo.products[i].quantity
     }
     total += (item.price * orderInfo.products[i].qty);
-    labelledTotal += (item.labledPrice * orderInfo.products[i].qty);
+    labledTotal += (item.labledPrice * orderInfo.products[i].qty);
   
 }
 
