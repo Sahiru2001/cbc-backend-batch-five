@@ -28,9 +28,9 @@ const orderSchema = new mongoose.Schema({
         required : true,
         default : 'pending'
     },
-    labelledTotal : {
+    labledTotal : {
         type : Number,
-        required : true
+        required : false
     },
     total : {
         type : Number,
@@ -57,7 +57,7 @@ const orderSchema = new mongoose.Schema({
                 images : [
                     {type : String}
                 ],
-                lablledPrice : {
+                labledPrice : {
                     type : Number,
                     required : true
                 },

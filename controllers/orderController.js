@@ -69,7 +69,7 @@ try{
                 price : item.price,
             
         },
-        quantity : orderInfo.products[i].quantity
+        quantity : orderInfo.products[i].qty
     }
     total += (item.price * orderInfo.products[i].qty);
     labledTotal += (item.labledPrice * orderInfo.products[i].qty);
@@ -83,14 +83,16 @@ try{
     address : orderInfo.address,
     total : 0,
     phone : orderInfo.phone,
-    products : []
+    products : products,
+    labledTotal : labledTotal,
+    total: total
 })
 
 
-    const createOrder = await order.save();
+    const createdOrder = await order.save();
     res.json({
         message : "Order created successfully",
-        order : createOrder
+        order : createdOrder
     })
 
 }catch(err){
@@ -99,6 +101,32 @@ try{
         error : err
     })
  }
+}
+
+export async function getOrders(req,res){
+    if(req.user == null){
+        res.status(403).json({
+            message: "Please login and try again"
+        })
+        return
+    }
+    try{
+        if(req.user.role == "admin"){
+            const orders = await Order.find()
+            res.json(orders)
+        }
+        else{
+            const orders = await Order.find({email : req.user.email})
+            res.json(orders)
+
+        }
+
+    }catch(err){
+        res.status(500).json({
+            message:"Failed to fetch orders",
+            error: err,
+        })
+    }
 }
 
 
