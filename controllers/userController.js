@@ -197,7 +197,7 @@ const transport = nodemailer.createTransport({
 })
 
 export async function sendOTP(req, res) {
-    //quof duvn ugll gimo
+    
     const randomOTP = Math.floor(100000 + Math.random() * 900000);
     const email = req.body.email;
     if (email == null) {
