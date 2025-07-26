@@ -301,6 +301,19 @@ export async function resetPassword(req,res){
         }
     }
 
+    export function getUser(req,res){
+        if(req.user == null){
+            res.status(403).json({
+                message: "Please login and try again"
+            })
+            return
+        }else{
+            res.json({
+                ...req.user
+            })
+        }
+    }
+
 
 
 
