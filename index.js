@@ -63,7 +63,7 @@ app.use("/api/orders", orderRouter);
 
 
 
-//mongodb+srv://<SahiruSandeepa>:<8319>@cluster0.kkkwtbq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
 
 app.listen(5000, () => {
     console.log('Server started on port 5000');
